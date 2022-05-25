@@ -24,7 +24,7 @@ const scene = new THREE.Scene();
 
 //Load background texture
 const loader = new THREE.TextureLoader();
-loader.load('/assets/images/newpic.jpg' , function(texture)
+loader.load('assets/images/newpic.jpg' , function(texture)
             {
              scene.background = texture;  
             });
