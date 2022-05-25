@@ -27,6 +27,17 @@ const loader = new THREE.TextureLoader();
 loader.load('assets/images/newpic.jpg' , function(texture)
             {
              scene.background = texture;  
+             var repeatX, repeatY;
+             var clothWidth = window.innerWidth;
+             var clothHeight = window.innerHeight;
+             var textureSettingh = 406;
+             var textureSettingw = 423;
+             texture.wrapS = THREE.ClampToEdgeWrapping;
+             texture.wrapT = THREE.RepeatWrapping;
+            repeatX = clothWidth * textureSettingh / (clothHeight * textureSettingw);
+            repeatY = 1;
+            texture.repeat.set(repeatX, repeatY);
+            texture.offset.x = (repeatX - 1) / 2 * -1;
             });
 
             
