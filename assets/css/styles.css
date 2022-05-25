@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Vapor";
-    src: url(/assets/typefaces/SFAlienEncounters.ttf) format("truetype");
+    src: url(../typefaces/SFAlienEncounters.ttf) format("truetype");
 }
 h2 { 
     font-family: "Vapor", Verdana, Tahoma;
