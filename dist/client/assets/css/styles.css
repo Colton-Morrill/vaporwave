@@ -2,18 +2,33 @@
     font-family: "Vapor";
     src: url(/assets/typefaces/SFAlienEncounters.ttf) format("truetype");
 }
-h2 { 
+
+h2 {
     font-family: "Vapor", Verdana, Tahoma;
 }
+
 .name {
     top: 100px;
     left: 100px;
 }
+
 .popup {
     position: absolute;
-margin-left: auto;
-margin-right: auto;
-text-align: center;
-width: auto; 
-top: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: auto;
+    top: 30%;
+}
+
+@media screen and (max-width: 950px) {
+    .name {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: auto;
+        top: 100px;
+        left: initial;
+    }
 }

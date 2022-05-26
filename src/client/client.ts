@@ -11,7 +11,7 @@ import * as jQuery from 'jquery';
 const TEXTURE_PATH = "https://res.cloudinary.com/dg5nsedzw/image/upload/v1641657168/blog/vaporwave-threejs-textures/grid.png";
 const DISPLACEMENT_PATH = "https://res.cloudinary.com/dg5nsedzw/image/upload/v1641657200/blog/vaporwave-threejs-textures/displacement.png";
 const METALNESS_PATH = "https://res.cloudinary.com/dg5nsedzw/image/upload/v1641657200/blog/vaporwave-threejs-textures/metalness.png";
-
+var screenWidth = window.innerWidth;
 // Textures
 const textureLoader = new THREE.TextureLoader();
 const gridTexture = textureLoader.load(TEXTURE_PATH);
@@ -47,7 +47,14 @@ const fog = new THREE.Fog("#000000", 1, 2.5);
 scene.fog = fog;
 
 // Objects
-const geometry = new THREE.PlaneGeometry(4, 2, 24, 24);
+var geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
+if (screenWidth <= 950) {
+    geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
+}
+else {
+    geometry = new THREE.PlaneGeometry(4, 2, 24, 24);
+}
+
 const material = new THREE.MeshStandardMaterial({
     map: gridTexture,
     displacementMap: terrainTexture,
@@ -96,10 +103,16 @@ var width = 0.125,
     cube2.rotation.y = 0.15;
     cube2.rotation.x = -0.05;
     cube2.name = "right";
-scene.add( cube );
-scene.add( cube2 );
 
 
+if (screenWidth <= 950) {
+    scene.remove(cube);
+    scene.remove(cube2);
+}
+else {
+    scene.add(cube);
+    scene.add(cube2);
+}
 
 const plane = new THREE.Mesh(geometry, material);
 plane.rotation.x = -Math.PI * 0.5;
@@ -237,8 +250,14 @@ const highlightedMaterial = new THREE.MeshBasicMaterial({
     color: 0x00ff00
 })
 
-document.addEventListener('mousedown', onDocumentMouseMove, false)
-document.addEventListener('mousemove', onDocumentMouseGrow, false)
+if (screenWidth >= 950) {
+    document.addEventListener('mousedown', onDocumentMouseMove, false)
+    document.addEventListener('mousemove', onDocumentMouseGrow, false)
+}
+else {
+
+}
+
 function onDocumentMouseGrow(event: MouseEvent) {
   raycaster.setFromCamera(
       {
@@ -292,6 +311,29 @@ function onDocumentMouseMove(event: MouseEvent) {
     }
 }
 
+window.addEventListener('resize', onWindowResize, false)
+function onWindowResize() {
 
+
+    const loader = new THREE.TextureLoader();
+    loader.load('assets/images/newpic.jpg' , function(texture)
+            {
+            scene.background = texture;  
+            var repeatX, repeatY;
+            var clothWidth = window.innerWidth;
+            var clothHeight = window.innerHeight;
+            var textureSettingh = 406;
+            var textureSettingw = 423;
+            texture.wrapS = THREE.ClampToEdgeWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            repeatX = clothWidth * textureSettingh / (clothHeight * textureSettingw);
+            repeatY = 1;
+            texture.repeat.set(repeatX, repeatY);
+            texture.offset.x = (repeatX - 1) / 2 * -1;
+    });
+}
+
+
+ 
 
            
