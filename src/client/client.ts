@@ -88,6 +88,9 @@ sideBox.encoding = sRGBEncoding;
 var frontAbout = textureLoader.load('assets/images/front-about.png');
 frontAbout.encoding = sRGBEncoding;
 
+var frontWork = textureLoader.load('assets/images/front-work.png');
+frontWork.encoding = sRGBEncoding;
+
 const geometry2 = new THREE.BoxGeometry(1, 1, 1);
 const cubeMaterials = [
     new THREE.MeshBasicMaterial({ map: sideBox}), //right side
@@ -105,13 +108,25 @@ const cubeMaterialsAbout = [
     new THREE.MeshBasicMaterial({map: frontAbout}), //front side
     new THREE.MeshBasicMaterial({ map: sideBox}), 
 ];
+
+const cubeMaterialsWork = [
+    new THREE.MeshBasicMaterial({ map: sideBox}), //right side
+    new THREE.MeshBasicMaterial({ map: sideBox}), //left side
+    new THREE.MeshBasicMaterial({color: 0x000000}), //top side
+    new THREE.MeshBasicMaterial({color: 0x000000}), //bottom side
+    new THREE.MeshBasicMaterial({map: frontWork}), //front side
+    new THREE.MeshBasicMaterial({ map: sideBox}), 
+];
  
-const cube = new THREE.Mesh(geometry2, cubeMaterials);
+const cube = new THREE.Mesh(geometry2, cubeMaterialsWork);
 const cube2 = new THREE.Mesh(geometry2, cubeMaterialsAbout);
+const cube3 = new THREE.Mesh(geometry2, cubeMaterials);
 
 var width = 0.125,
-    height = 0.15,
+    height = 0.16,
     length = 0.025;
+
+
 
 cube.scale.x = width;
 cube.scale.y = height;
@@ -119,7 +134,7 @@ cube.scale.z = length;
 cube.position.y = 0.1;
 cube.position.z = 0.5;
 cube.rotation.y = 0.35;
-cube.rotation.x = 0.25;
+cube.rotation.x = 0.15;
 cube.name = 'middle';
 
 cube2.scale.x = width;
@@ -132,6 +147,17 @@ cube2.rotation.y = 0.15;
 cube2.rotation.x = -0.05;
 cube2.name = "right";
 
+cube3.scale.x = width;
+cube3.scale.y = height;
+cube3.scale.z = length;
+cube3.position.y = 0.1;
+cube3.position.z = 0.5;
+cube3.position.x = -0.25;
+cube3.rotation.y = 0.75;
+cube3.rotation.x = 0.15;
+cube3.rotation.z = -0.05;
+cube3.name = 'left';
+
 
 if (screenWidth <= 950) {
     scene.remove(cube);
@@ -140,6 +166,7 @@ if (screenWidth <= 950) {
 else {
     scene.add(cube);
     scene.add(cube2);
+    scene.add(cube3);
 }
 
 // const fbxLoader = new FBXLoader();
@@ -233,6 +260,7 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.enabled = false;
 
+
 // Renderer
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
@@ -299,7 +327,7 @@ let intersectedObject: THREE.Object3D | null
 
 const raycaster = new THREE.Raycaster()
 let intersects: THREE.Intersection[]
-pickableObjects.push(cube, cube2)
+pickableObjects.push(cube, cube2, cube3)
 
 const originalMaterials: { [id: string]: THREE.Material | THREE.Material[] } =
     {}
@@ -336,7 +364,7 @@ function onDocumentMouseGrow(event: MouseEvent) {
         jQuery('html').css('cursor', 'pointer');
     } else {
         var width = 0.125,
-            height = 0.15,
+            height = 0.16,
             length = 0.025;
         intersectedObject = null
         pickableObjects[0].scale.x = width;
@@ -345,6 +373,9 @@ function onDocumentMouseGrow(event: MouseEvent) {
         pickableObjects[1].scale.x = width;
         pickableObjects[1].scale.y = height;
         pickableObjects[1].scale.z = length;
+        pickableObjects[2].scale.x = width;
+        pickableObjects[2].scale.y = height;
+        pickableObjects[2].scale.z = length;
         jQuery('html').css('cursor', 'auto');
     }
 }
@@ -363,14 +394,17 @@ function onDocumentMouseMove(event: MouseEvent) {
         var selectedBox = intersectedObject.name;
         switch (selectedBox) {
             case 'left':
+                document.body.className += ' default-cursor';
                 var element = document.getElementsByClassName('popup3')[0];
                 element.classList.remove('d-none');
                 break;
             case 'middle':
+                document.body.className += ' default-cursor';
                 var element = document.getElementsByClassName('popup')[0];
                 element.classList.remove('d-none');
                 break;
             case 'right':
+                document.body.className += ' default-cursor';
                 var element = document.getElementsByClassName('popup2')[0];
                 element.classList.remove('d-none');
                 break;
@@ -405,9 +439,11 @@ function onWindowResize() {
 }
 
 jQuery( ".close-button" ).click(function() {
-    jQuery('.window').addClass('d-none');
+    jQuery('.window-cont').addClass('d-none');
+    jQuery('body').removeClass('default-cursor');
     document.addEventListener('mousedown', onDocumentMouseMove, false)
     document.addEventListener('mousemove', onDocumentMouseGrow, false)
   });
+
 
 
