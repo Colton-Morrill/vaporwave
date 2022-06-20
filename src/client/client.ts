@@ -44,6 +44,27 @@ loader.load('assets/images/newpic.jpg', function (texture) {
     texture.offset.x = (repeatX - 1) / 2 * -1;
 });
 
+window.addEventListener("resize", () => {
+    const loader = new THREE.TextureLoader();
+    loader.load('assets/images/newpic.jpg', function (texture) {
+        texture.encoding = THREE.sRGBEncoding;
+        scene.background = texture;
+        var repeatX, repeatY;
+        var clothWidth = window.innerWidth;
+        var clothHeight = window.innerHeight;
+        console.log(clothWidth, clothHeight);
+        var textureSettingh = 4500;
+        var textureSettingw = 9992;
+        texture.wrapS = THREE.ClampToEdgeWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        repeatX = clothWidth * textureSettingh / (clothHeight * textureSettingw);
+        console.log(repeatX);
+        repeatY = 1;
+        texture.repeat.set(repeatX, repeatY);
+        texture.offset.x = (repeatX - 1) / 2 * -1;
+    });
+});
+
 
 
 // Fog
@@ -415,27 +436,6 @@ function onDocumentMouseMove(event: MouseEvent) {
     } else {
         intersectedObject = null
     }
-}
-
-window.addEventListener('resize', onWindowResize, false)
-function onWindowResize() {
-
-
-    const loader = new THREE.TextureLoader();
-    loader.load('assets/images/newpic.jpg', function (texture) {
-        scene.background = texture;
-        var repeatX, repeatY;
-        var clothWidth = window.innerWidth;
-        var clothHeight = window.innerHeight;
-        var textureSettingh = 406;
-        var textureSettingw = 423;
-        texture.wrapS = THREE.ClampToEdgeWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        repeatX = clothWidth * textureSettingh / (clothHeight * textureSettingw);
-        repeatY = 1;
-        texture.repeat.set(repeatX, repeatY);
-        texture.offset.x = (repeatX - 1) / 2 * -1;
-    });
 }
 
 jQuery( ".close-button" ).click(function() {
