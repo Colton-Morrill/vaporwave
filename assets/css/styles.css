@@ -1,0 +1,124 @@
+@font-face {
+    font-family: "Vapor";
+    src: url(../assets/typefaces/SFAlienEncounters.ttf) format("truetype");
+}
+
+h2, h3 {
+    font-family: "Vapor", Verdana, Tahoma;
+}
+
+.name {
+    top: 100px;
+    left: 100px;
+}
+
+.popup-styling {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: auto;
+    top: 30%;
+}
+.card-body {
+    background-color: white;
+    margin: 0.5rem;
+    border-top: black 1px solid;
+    border-left: black 1px solid;
+    border-right: lightgray 1px solid;
+    border-bottom: lightgray 1px solid;
+    padding: 0.5rem;
+}
+.box-titles {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 666px;
+    margin-left: -135px;
+   
+}
+.box-titles h3 {
+    color: white;
+    font-size: 24px;
+    margin-top: 3rem;
+}
+.box-titles h3:nth-of-type(2) {
+    margin-left: -60px
+}
+.box-titles h3:last-of-type {
+    margin-right: -60px
+}
+.window {
+    width: 600px;
+    text-align: left;
+}
+.window h5 {
+    border-bottom: 1px solid black;
+    margin-bottom: 1rem;
+}
+.window div {
+    margin-bottom: 1rem;
+}
+.project-header{
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+    font-size: 11px;
+}
+.window a {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.default-cursor {
+    cursor: auto;
+}
+.graphic-cont {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+.img-cont {
+    padding: 0.5rem;
+    width: 25%;
+}
+.img-cont:hover {
+    cursor: pointer;
+    background: lightgray;
+}
+.img-cont img{
+    width: 100%;
+}
+.lightbox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-window {
+    width: 100%;
+max-width: 75vw;
+max-height: 75vh
+}
+.lightbox-body img {
+    width: 100%;
+    height: calc(100% - 75px);
+    object-fit: contain;
+}
+@media screen and (max-width: 950px) {
+    .name {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: auto;
+        top: 100px;
+        left: initial;
+    }
+    .box-titles h3 {
+        display: none;
+    }
+}
