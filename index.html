@@ -15,11 +15,6 @@
         }
     </style>
     <script>
-        function closePopup() {
-            var closeButton = document.getElementsByClassName('window')[0];
-            closeButton.classList.add('d-none');
-            console.log('working');
-        }
     </script>
 </head>
 
@@ -27,19 +22,34 @@
     <h2 class="position-absolute text-white fs-1 name">Colton Morrill</h2>
     <script type="module" src="bundle.js"></script>
     <canvas class="webgl"></canvas>
-    <div class="popup d-none position-absolute window">
+    <div class="popup popup-styling d-none position-absolute window">
         <div class="title-bar">
             <div class="title-bar-text">
-                My First VB4 Program
+                My Work
             </div>
             <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
-                <button onclick="closePopup()" class='close-button' aria-label="Close"></button>
+                <button class='close-button' aria-label="Close"></button>
             </div>
         </div>
         <div class="card-body">
             <h1>Test</h1>
+        </div>
+    </div>
+    <div class="popup2 popup-styling d-none position-absolute window">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                About Me
+            </div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button class='close-button' aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="card-body">
+            <h1>Test 2</h1>
         </div>
     </div>
 </body>
