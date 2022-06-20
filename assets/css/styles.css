@@ -1,10 +1,9 @@
 @font-face {
     font-family: "Vapor";
-    src: url(../assets/typefaces/SFAlienEncounters.ttf) format("truetype");
+    src: url(../typefaces/SFAlienEncounters.ttf) format("truetype");
 }
 
-
-h2, h3 {
+h2, h3, h6 {
     font-family: "Vapor", Verdana, Tahoma;
 }
 
@@ -52,6 +51,9 @@ h2, h3 {
 .box-titles h3:last-of-type {
     margin-right: -60px
 }
+.window-cont {
+    z-index: 1000;
+}
 .window {
     width: 600px;
     text-align: left;
@@ -98,6 +100,7 @@ h2, h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 .lightbox-window {
     width: 100%;
@@ -108,6 +111,25 @@ max-height: 75vh
     width: 100%;
     height: calc(100% - 75px);
     object-fit: contain;
+}
+.mobile-display {
+    display: none;
+}
+.mobile-option {
+    margin-bottom: 2rem;
+    display:  flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.mobile-option img {
+    width: 100px;
+}
+.mobile-option h6 {
+    text-align: center;
+    color: white;
+    margin-top: 1rem;
+    font-size: 19px;
 }
 @media screen and (max-width: 950px) {
     .name {
@@ -121,5 +143,11 @@ max-height: 75vh
     }
     .box-titles h3 {
         display: none;
+    }
+    .mobile-display {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
     }
 }
