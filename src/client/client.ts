@@ -409,7 +409,10 @@ function onDocumentMouseMove(event: MouseEvent) {
         camera
     )
     intersects = raycaster.intersectObjects(pickableObjects, false)
-
+    if (screenWidth >= 950) {
+        document.addEventListener('mousedown', onDocumentMouseMove, false)
+        document.addEventListener('mousemove', onDocumentMouseGrow, false)
+    
     if (intersects.length > 0) {
         intersectedObject = intersects[0].object
         var selectedBox = intersectedObject.name;
@@ -433,7 +436,7 @@ function onDocumentMouseMove(event: MouseEvent) {
         document.removeEventListener('mousedown', onDocumentMouseMove, false)
         document.removeEventListener('mousemove', onDocumentMouseGrow, false)
 
-    } else {
+    }} else {
         intersectedObject = null
     }
 }
